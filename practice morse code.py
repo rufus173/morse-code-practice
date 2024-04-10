@@ -1,7 +1,7 @@
 import random
 class initialise:
     def __init__(self) -> None:
-        self.letter_list = ["w","q","w","w","q","q","j","j","j",] # just for me as these are my least confident # if you want leave the list empty
+        self.letter_list = ["w","q","w","w","q","q","j","j","j","y"] # just for me as these are my least confident # if you want leave the list empty
         with open("english words.txt","r") as words:
             self.wordlist = []
             for i in words:
