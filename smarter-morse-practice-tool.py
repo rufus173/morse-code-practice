@@ -25,6 +25,7 @@ class WeightedDict():
 		if not self.weights_path.is_file():
 			doc = weights_dict_path.open("w")
 			doc.write(json.dumps({}))
+			doc.close()
 		self.load_weights()
 		print("ordering dictionary...")
 		self.order()
