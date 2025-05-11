@@ -23,7 +23,7 @@ class WeightedDict():
 		self.load_dictionary()
 		print("loading weights...")
 		if not self.weights_path.is_file():
-			doc = weights_path.open("w")
+			doc = self.weights_path.open("w")
 			doc.write(json.dumps({}))
 			doc.close()
 		self.load_weights()
