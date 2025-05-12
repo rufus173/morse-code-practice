@@ -1,9 +1,11 @@
 from pathlib import Path
 import readline #gives nicer input line editing
+from functools import lru_cache
 import random
 import json
 morse_translation_table = {"c": "-.-.", "d": "-..", "e": ".", "f": "..-.", "g": "--.", "h": "....", "i": "..", "j": ".---", "k": "-.-", "l": ".-..", "m": "--", "n": "-.", "o": "---", "q": "--.-", "r": ".-.", "s": "...", "t": "-", "u": "..-", "v": "...-", "w": ".--", "x": "-..-", "y": "-.--", "z": "--..", "a": ".-", "b": "-...","p":".--."}
 #borrowed from my fuzzy search
+@lru_cache(maxsize=None)
 def lev(a,b):
 	if len(a) == 0:
 		return len(b)
@@ -70,12 +72,12 @@ if __name__ == "__main__":
 		word = random.choice(candidates)
 		#50/50 if they translate to or from morse
 		if random.randint(0,1):
-			translated_word = list(translate_to_morse(word))
+			translated_word = tuple(translate_to_morse(word))
 			word_to_translate = word
 		else:
-			translated_word = list(word)
+			translated_word = tuple(word)
 			word_to_translate = translate_to_morse(word)
-		attempt = list(input(f"translate {word_to_translate} >>>"))
+		attempt = tuple(input(f"translate {word_to_translate} >>>"))
 		if attempt != translated_word:
 			print(f"INCORRECT! should have been {''.join(translated_word)}")
 			#calculate margin of error using levenshein distance and adjust the weights accordingly
